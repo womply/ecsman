@@ -1,0 +1,30 @@
+{
+    "containerDefinitions": [
+        {
+            "command": [
+                "command string"
+            ],
+            "cpu": 1024,
+            "entryPoint": [
+                "/entrypoint.sh"
+            ],
+            "environment": [
+                {
+                    "Name": "DATABASE_HOSTNAME",
+                    "Value": "my_database_host"
+                }
+            ],
+            "essential": true,
+            "image": "quay.io/mycompany/myimage",
+            "memory": 1024,
+            "name": "my-test",
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 80
+                }
+            ]
+        }
+    ],
+    "family": "testfamily"
+}
