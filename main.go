@@ -2,6 +2,11 @@
 Package main implements the ECSMAN command-line utility for managing
 Amazon Web Services' EC2 Container Service.
 
+To build the executables:
+
+Mac OS X: go build -o bin/ecsman.osx main.go
+Linux (with Docker running): docker run --rm -v "$PWD":/usr/src/ecsman -v ~/workspace/gowork/src/github.com:/go/src/github.com -w /usr/src/ecsman golang:1.5 go build -v
+
 Womply, www.womply.com
 */
 package main
@@ -69,14 +74,18 @@ func main() {
 			credProfile = *credFlag
 		}
 	}
-	if *verboseFlag {
-		if *credFlag == "env" {
+	var creds *credentials.Credentials
+	if *credFlag == "env" {
+		if *verboseFlag {
 			fmt.Printf("--> Running with credentials from environment variables\n\n")
-		} else {
+		}
+		creds = credentials.NewEnvCredentials()
+	} else {
+		if *verboseFlag {
 			fmt.Printf("--> Running with credential profile %s\n\n", credProfile)
 		}
+		creds = credentials.NewSharedCredentials("", credProfile)
 	}
-	var creds = credentials.NewSharedCredentials("", credProfile)
 
 	// Okay, what do we want to do today?
 	switch {
