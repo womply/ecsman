@@ -159,6 +159,7 @@ func UpdateService(creds *credentials.Credentials, region string, clusterName st
 	taskDefinitionOutput, err := awsConn.RegisterTaskDefinition(&ecs.RegisterTaskDefinitionInput{
 		ContainerDefinitions: taskDefn.TaskDefinition.ContainerDefinitions,
 		Family:               taskDefn.TaskDefinition.Family,
+		Volumes:              taskDefn.TaskDefinition.Volumes,
 	})
 	CheckError("registering updated task definition", err)
 	fmt.Println("  -> Task definition updated, registered as revision", *taskDefinitionOutput.TaskDefinition.Revision)
