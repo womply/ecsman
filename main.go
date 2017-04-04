@@ -5,7 +5,7 @@ Amazon Web Services' EC2 Container Service.
 To build the executables:
 
 Mac OS X: go build -o bin/ecsman.osx main.go
-Linux (with Docker running): docker run --rm -v "$PWD":/usr/src/ecsman -v ~/workspace/gowork/src/github.com:/go/src/github.com -w /usr/src/ecsman golang:1.5 go build -v
+Linux (with Docker running): docker run --rm -v "$PWD":/usr/src/ecsman -v ~/workspace/gowork/src/github.com:/go/src/github.com -w /usr/src/ecsman golang:1.8 go build -v
 
 Womply, www.womply.com
 */

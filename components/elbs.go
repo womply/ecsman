@@ -10,6 +10,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/elb"
 )
 
@@ -40,7 +41,7 @@ func PrintElbs(creds *credentials.Credentials, region string, loadBalancers []*s
 //
 func GetElbData(creds *credentials.Credentials, region string, loadBalancers []*string) *elb.DescribeLoadBalancersOutput {
 	// We need to get a new client because the "ELB" service is different from the "ECS" service.
-	elbAwsConn := elb.New(&aws.Config{
+	elbAwsConn := elb.New(session.New(), &aws.Config{
 		Region:      aws.String(region),
 		Credentials: creds,
 	})

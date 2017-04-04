@@ -15,6 +15,13 @@
                 }
             ],
             "essential": true,
+            "ulimits": [
+              {
+                "softLimit": 10000,
+                "hardLimit": 10000,
+                "name": "nofile"
+              }
+            ],
             "image": "quay.io/mycompany/myimage",
             "memory": 1024,
             "name": "my-test",

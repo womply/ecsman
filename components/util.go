@@ -11,6 +11,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ecs"
 )
 
@@ -32,7 +33,7 @@ func PrintSeparator() {
 
 // Create a connection object for ECS service work.
 func GetEcsConnection(creds *credentials.Credentials, region string) *ecs.ECS {
-	return ecs.New(&aws.Config{
+	return ecs.New(session.New(), &aws.Config{
 		Region:      aws.String(region),
 		Credentials: creds,
 	})
