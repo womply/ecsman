@@ -160,6 +160,9 @@ func UpdateService(creds *credentials.Credentials, region string, clusterName st
 		ContainerDefinitions: taskDefn.TaskDefinition.ContainerDefinitions,
 		Family:               taskDefn.TaskDefinition.Family,
 		Volumes:              taskDefn.TaskDefinition.Volumes,
+                TaskRoleArn:          taskDefn.TaskDefinition.TaskRoleArn,
+                PlacementConstraints: taskDefn.TaskDefinition.PlacementConstraints,
+                NetworkMode:          taskDefn.TaskDefinition.NetworkMode,
 	})
 	CheckError("registering updated task definition", err)
 	fmt.Println("  -> Task definition updated, registered as revision", *taskDefinitionOutput.TaskDefinition.Revision)
